@@ -89,6 +89,9 @@ const ObjLoader = () => {
     canvasRef.current.appendChild(renderer.domElement);
     canvasRef.current.addEventListener("click", onMouseClick); // Add click event listener to the canvas
 
+    const ambientLight = new THREE.AmbientLight("#f9f9f9", 4);
+    scene.add(ambientLight);
+
     var mtlLoader = new MTLLoader();
     mtlLoader.load("/02.mtl", function (materials) {
       materials.preload();
@@ -172,9 +175,6 @@ const ObjLoader = () => {
     // scene.add(spothelper);
 
     animate();
-
-    const ambientLight = new THREE.AmbientLight("#f9f9f9", 1.8);
-    scene.add(ambientLight);
 
     return () => {
       // document.removeEventListener("keydown", onKeyDown);
