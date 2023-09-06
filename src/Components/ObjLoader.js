@@ -6,6 +6,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import MaterialInfoPopup from "./MaterialInfoPopup";
 import { SpotLightEmit } from "../CommonFuncs/LightEmit";
 import { Hotspots, SpotLights } from "../utils/Spots";
+import { Constants } from "../utils/Constants";
 
 const ObjLoader = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -89,7 +90,10 @@ const ObjLoader = () => {
     canvasRef.current.appendChild(renderer.domElement);
     canvasRef.current.addEventListener("click", onMouseClick); // Add click event listener to the canvas
 
-    const ambientLight = new THREE.AmbientLight("#f9f9f9", 4);
+    const ambientLight = new THREE.AmbientLight(
+      "#f9f9f9",
+      Constants.ambientLightIntensity
+    );
     scene.add(ambientLight);
 
     var mtlLoader = new MTLLoader();

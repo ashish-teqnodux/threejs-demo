@@ -1,4 +1,5 @@
 export const Constants = {
+  ambientLightIntensity: 3.6,
   pointLightIntensity: 1,
   spotLightIntensity: 5,
   spotLightDecay: 1,
