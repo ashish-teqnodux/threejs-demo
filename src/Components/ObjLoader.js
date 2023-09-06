@@ -4,9 +4,8 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import MaterialInfoPopup from "./MaterialInfoPopup";
-import { PointLightEmit, SpotLightEmit } from "../CommonFuncs/LightEmit";
-import { Hotspots, PointLights, SpotLights } from "../utils/Spots";
-import { Constants } from "../utils/Constants";
+import { SpotLightEmit } from "../CommonFuncs/LightEmit";
+import { Hotspots, SpotLights } from "../utils/Spots";
 
 const ObjLoader = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -89,9 +88,6 @@ const ObjLoader = () => {
   useEffect(() => {
     canvasRef.current.appendChild(renderer.domElement);
     canvasRef.current.addEventListener("click", onMouseClick); // Add click event listener to the canvas
-
-    const ambientLight = new THREE.AmbientLight("#f9f9f9", 1.8);
-    scene.add(ambientLight);
 
     var mtlLoader = new MTLLoader();
     mtlLoader.load("/02.mtl", function (materials) {
@@ -176,6 +172,10 @@ const ObjLoader = () => {
     // scene.add(spothelper);
 
     animate();
+
+    const ambientLight = new THREE.AmbientLight("#f9f9f9", 1.8);
+    scene.add(ambientLight);
+
     return () => {
       // document.removeEventListener("keydown", onKeyDown);
       // document.removeEventListener("keyup", onKeyUp);
